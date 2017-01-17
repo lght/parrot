@@ -3,15 +3,27 @@
 script_dir="${0%/*}"
 cd $script_dir/..
 
-db_port=5432
+DB_PORT=5432
 
-while getopts 'p:' flag; do
-  case "${flag}" in
-    p) db_port="${OPTARG}" ;;
-  esac
+while [[ $# -gt 1 ]]
+do
+key="$1"
+
+case $key in
+    -dbp|--db-port)
+    DB_PORT="$2"
+    shift # past argument
+    ;;
+    --default)
+    ;;
+    *)
+    # unknown option
+    ;;
+esac
+shift # past argument or value
 done
 
-sed "s/{{DB_PORT}}/$db_port/g" docker-compose.tmpl > docker-compose.yml
+sed "s/{{DB_PORT}}/$DB_PORT/g" docker-compose.tmpl > docker-compose.yml
 
 echo "Stopping existing containers..."
 docker-compose down
