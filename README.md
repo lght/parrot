@@ -28,12 +28,11 @@ The easiest way to get started is using `docker` and `docker-compose`. Simply cl
 ```
 $ git clone https://github.com/anthonynsimon/parrot.git
 $ cd parrot
-$ sudo /bin/bash scripts/buildweb.sh
+$ /bin/bash scripts/buildweb.sh
 $ sudo /bin/bash scripts/start.sh
 ```
 
 > Please note that to build the web app, `npm` is required.
-
 
 This will build the web app and launch 3 containers: a Postgres **database**, the Parrot **API server** and Nginx as the **reverse proxy and static file server**.
 
